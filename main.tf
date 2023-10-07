@@ -34,3 +34,10 @@ resource "azurerm_storage_account" "storage" {
   account_replication_type = "LRS"
   account_tier             = "Standard"
 }
+
+resource "azurerm_storage_blob" "blob" {
+  name = "ghdblob"
+  type = "block"
+  storage_container_name = azurerm_storage_account.storage.name
+  storage_account_name = azurerm_storage_account.storage.name
+}
