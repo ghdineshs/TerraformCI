@@ -22,15 +22,16 @@ provider "azurerm" {
 }
 
 
-resource "azurerm_resource_group" "rg" {
-  name     = "1-e58e54af-playground-sandbox"
-  location = "eastus"
+
+data "azurerm_resource_group" "rg" {
+  name = "1-e58e54af-playground-sandbox"
+
 }
 
 resource "azurerm_storage_account" "storage" {
   name                     = "ghdstr008"
-  location                 = azurerm_resource_group.rg.location
-  resource_group_name      = azurerm_resource_group.rg.name
+  location                 = data.azurerm_resource_group.rg.location
+  resource_group_name      = data.azurerm_resource_group.rg.name
   account_replication_type = "LRS"
   account_tier             = "Standard"
 }
