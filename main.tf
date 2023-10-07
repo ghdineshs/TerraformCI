@@ -36,6 +36,14 @@ resource "azurerm_storage_account" "storage" {
   account_tier             = "Standard"
 }
 
+resource "azurerm_storage_account" "storage2" {
+  name                     = "ghdstr009"
+  location                 = data.azurerm_resource_group.rg.location
+  resource_group_name      = data.azurerm_resource_group.rg.name
+  account_replication_type = "LRS"
+  account_tier             = "Standard"
+}
+
 resource "azurerm_storage_blob" "blob" {
   name = "ghdblob"
   type = "block"
